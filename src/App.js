@@ -13,6 +13,7 @@ import AppRoutes from './components/AppRoutes';
 import SignUp from './modules/signup';
 const { Sider, Content, Footer } = Layout;
 
+
 function App() {
   return (
     <>
