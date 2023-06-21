@@ -32,11 +32,10 @@ function SignUp () {
       >
         Log in
       </Button>
-      <a className="" href="">
-        Forgot password
-      </a>
+     
+      <Button>Forgot password</Button>
 
-      Or <a href="">register now!</a>
+      Or <Link><Button> register now!</Button></Link>
    
   </Form>
   </Card>

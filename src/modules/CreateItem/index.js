@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Card, Form, Button, Modal, Input } from 'antd';
-import { useLocation } from 'react-router-dom';
 const { TextArea } = Input
 const CreateItem = ({ isModalOpen, setIsModalOpen, restaurRentsMenu, setRestaurRetantsMenu ,itemId}) => {
     const [form] = Form.useForm();
@@ -21,8 +20,8 @@ const CreateItem = ({ isModalOpen, setIsModalOpen, restaurRentsMenu, setRestaurR
 
  form.resetFields();
     }
+ }, [itemId,form,restaurRentsMenu])
 
-    }, [itemId])
 
 
     // Case: Submit button out of Form

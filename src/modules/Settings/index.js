@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { Card } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined, SketchCircleFilled, SketchOutlined } from '@ant-design/icons';
+import { EditOutlined, EllipsisOutlined, SettingOutlined, SketchCircleFilled } from '@ant-design/icons';
 import user from '../../assets/data/user/user.json'
 import EditModal from '../../shared/EditModal';
 import ModalView from '../../shared/Modal';
 import './style.css'
-const { Meta } = Card;
+// const { Meta } = Card;
 
 function Settings() {
-    const [loading, setLoading] = useState(true);
-    const onChange = (checked) => {
-        setLoading(!checked);
-    };
+    // const [loading, setLoading] = useState(true);
+    // const onChange = (checked) => {
+    //     setLoading(!checked);
+    // };
 
     const [userProfileData, setUserProfileData] = useState(user)
     const [openEditModal, setOpenEditModal] = useState(false)
@@ -34,9 +34,9 @@ function Settings() {
 
                 <div style={{ display: 'flex', gap: '20px' }}>
                     <div style={{ position: 'relative', height: '50px' }}>
-                        <img src={userProfileData.profileUrl} style={{
+                        <img src={userProfileData.profileUrl} alt="profile_image" style={{
                             width: '50px', height: '50px',
-                            borderRadius: '100%',
+                            borderRadius: '100%', 
                         }} />
                         <input type="file" onChange={handleChange} className='userImageUpload' />
                         <EditOutlined className='editIcon' key={"edit"} />

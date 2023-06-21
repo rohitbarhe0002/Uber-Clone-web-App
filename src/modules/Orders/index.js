@@ -1,25 +1,25 @@
 import React, { useState } from 'react'
 import orders from  '../../assets/data/dashboard/orders.json';
 import { Card,Button, Table,Tag } from 'antd';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import ModalContent from '../../shared/MdalContent';
 import ModalView from '../../shared/Modal';
 
 const renderStatus = (status) => {
-    if(status=="Accepted"){
+    if(status==="Accepted"){
         return <Tag  color='green'>{status}</Tag>
     }
-    if(status =="Pending"){
+    if(status ==="Pending"){
         return <Tag  color='orange'>{status}</Tag>
     }
-    if(status=="Declined"){
+    if(status==="Declined"){
         return <Tag  color='red'>{status}</Tag>
     }
 }
 
 
 function Order() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [userOrder,setUserOrder] = useState(orders);
     const [orderModal,setOrderModal] = useState(false);
     const [customerOrderId,setCustomerOrderId] = useState();

@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 import dishes from  '../../assets/data/dashboard/dishes.json';
-import { Card,Descriptions,Divider,List,Button, Table,Tag } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
-import CreateItem from '../CreateItem';
+import { Card,Button, Table} from 'antd';
 import ModalView from '../../shared/Modal';
 import ModalContent from '../../shared/MdalContent';
 
-const renderStatus = (status) => {
-    if(status=="Accepted"){
-        return <Tag  color='green'>{status}</Tag>
-    }
-    if(status=="Pending"){
-        return <Tag  color='orange'>{status}</Tag>
-    }
-    if(status=="Declined"){
-        return <Tag  color='red'>{status}</Tag>
-    }
-}
+// const renderStatus = (status) => {
+//     if(status==="Accepted"){
+//         return <Tag  color='green'>{status}</Tag>
+//     }
+//     if(status==="Pending"){
+//         return <Tag  color='orange'>{status}</Tag>
+//     }
+//     if(status==="Declined"){
+//         return <Tag  color='red'>{status}</Tag>
+//     }
+// }
 
 function RestaurentsMenu () {
     const [restaurRentsMenu,setRestaurRetantsMenu]   =  useState(dishes)
@@ -30,10 +28,10 @@ function RestaurentsMenu () {
    }
 
 const handleItemEdit= (itemId) =>{
-    console.log(itemId,"item id");
+    console.log(itemId,"item id...");
     setFoodID(itemId)
     setIsModalOpen(!isModalOpen)
-}
+  }
     const tableColumns =[{
         title: 'Menu Item',
         dataIndex: 'name', 
@@ -51,9 +49,7 @@ const handleItemEdit= (itemId) =>{
         title: 'Action',
         dataIndex: 'id',
         key: 'id',
-        render:(record)=> <Button onClick={()=>removeItems(record)} danger> Remove</Button>,
-        
-        
+        render:(record)=> <Button onClick={()=>removeItems(record)} danger>Remove</Button>,
     },
     {
         title: 'Edit',

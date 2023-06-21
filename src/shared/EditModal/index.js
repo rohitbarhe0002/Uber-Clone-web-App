@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Form, Button,  Input, Radio } from 'antd';
+import React, { useEffect } from 'react';
+import { Card, Form, Button,  Input } from 'antd';
 
 const EditModal = ({  setIsModalOpen, isModalOpen,cardTitle,userData,setUserData }) => {
   const [form] = Form.useForm();
@@ -17,7 +17,7 @@ const EditModal = ({  setIsModalOpen, isModalOpen,cardTitle,userData,setUserData
         }
     };
     updateFormFields();
-  }, [userData]);
+  });
 //   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
 //   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
   const handleFormSubmit = () => {
@@ -31,9 +31,9 @@ const EditModal = ({  setIsModalOpen, isModalOpen,cardTitle,userData,setUserData
       setIsModalOpen(!isModalOpen)
   };
 
-  const handleClose = () => {
-    form.resetFields();
-  };
+  // const handleClose = () => {
+  //   form.resetFields();
+  // };
 
   return (
     <>

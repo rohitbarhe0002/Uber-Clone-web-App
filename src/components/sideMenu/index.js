@@ -17,11 +17,11 @@ function SideMenu () {
    },
    {
     key:'settings',
-    label: 'Settings'
+    label: 'Profile'
    },
 ]
 
-   const onMenuItemClicked = (menuItems) => navigate(menuItems.key)
+   // const onMenuItemClicked = (menuItems) => navigate(menuItems.key)
   return (
 <Menu items={menuItems} onClick={(menuItems)=>navigate(menuItems.key)}/>
   )

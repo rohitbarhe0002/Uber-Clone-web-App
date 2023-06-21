@@ -1,16 +1,16 @@
 import React from 'react'
 import orders from  '../../assets/data/dashboard/orders.json';
-import { Card,Descriptions,Divider,List,Button, Table,Tag } from 'antd';
+import { Card,Table,Tag } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 const renderStatus = (status) => {
-    if(status=="Accepted"){
+    if(status==="Accepted"){
         return <Tag  color='green'>{status}</Tag>
     }
-    if(status=="Pending"){
+    if(status==="Pending"){
         return <Tag  color='orange'>{status}</Tag>
     }
-    if(status=="Declined"){
+    if(status==="Declined"){
         return <Tag  color='red'>{status}</Tag>
     }
 }

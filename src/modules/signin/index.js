@@ -17,7 +17,7 @@ function SignIn () {
           type="password"
           placeholder="Password"
         />
-      )
+      
     </Form.Item>
     <Form.Item rules={[{ required: true }]}> 
   <Checkbox>Remember me</Checkbox>

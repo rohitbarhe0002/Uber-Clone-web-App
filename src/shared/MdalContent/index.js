@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { Card, Form, Button,  Input, Radio } from 'antd';
 const { TextArea } = Input;
 
@@ -74,9 +74,9 @@ const ModalContent = ({ restaurRentsMenu, setRestaurRetantsMenu, itemId, cardTit
       });
   };
 
-  const handleClose = () => {
-    form.resetFields();
-  };
+  // const handleClose = () => {
+  //   form.resetFields();
+  // };
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Form, Button, Modal, Input } from 'antd';
+import {Modal} from 'antd';
 function ModalView({children,isModalOpen, setIsModalOpen}) {
   return (
 <Modal onOk={()=>setIsModalOpen(!isModalOpen)} onCancel={()=>setIsModalOpen(!isModalOpen)} open={isModalOpen}>
