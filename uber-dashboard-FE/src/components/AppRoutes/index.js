@@ -9,7 +9,7 @@ import Settings from '../../modules/Settings';
 function AppRoutes() {
   return (
     <Routes>
-    <Route path='/' element={<Order/>}/>
+    <Route path='orderDetail' element={<Order/>}/>
     <Route path='orders/:id' element={<DetailedOrder/>}/>
     <Route path='menu' element={<RestaurentsMenu/>}/>
     <Route path='craeteItem' element={<CreateItem/>}/>

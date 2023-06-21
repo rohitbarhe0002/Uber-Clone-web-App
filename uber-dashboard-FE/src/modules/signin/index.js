@@ -1,18 +1,19 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, Card } from 'antd';
-
+import { useNavigate } from 'react-router-dom';
 function SignIn() {
   const [form] = Form.useForm();
-
-  const handleFormSubmit = () => {
+  const navigate = useNavigate();
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     form.validateFields()
-        .then((values) => {
-       console.log(values,"valuess")
-
-    }).catch((errorInfo) => {
-            console.log(errorInfo);
-        });
-};
+      .then((values) => {
+        console.log(values, "valuess");
+        navigate('/app')
+      }).catch((errorInfo) => {
+        console.log(errorInfo);
+      });
+  };
 
   return (
     <Card
@@ -22,11 +23,11 @@ function SignIn() {
         padding: 20,
       }}
     >
-      <Form onSubmit={() => console.log()} className="login-form">
-        <Form.Item name="username"  label="username" rules={[{ required: true }]}>
-          <Input placeholder="Username" />
-        </Form.Item> 
-  
+      <Form form={form} onSubmit={() => console.log()} className="login-form">
+        <Form.Item name="email" label="email" rules={[{ required: true }]}>
+          <Input placeholder="email" />
+        </Form.Item>
+
         <Form.Item name="password" label="password" rules={[{ required: true }]}>
           <Input type="password" placeholder="Password" />
         </Form.Item>
@@ -34,14 +35,14 @@ function SignIn() {
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button type="primary" htmlType="submit" className="login-form-button" onClick={handleFormSubmit}>
             Log in
           </Button>
         </Form.Item>
         <Form.Item>
-          <a href="">Forgot password</a>
+          <a href="forgot">Forgot password</a>
           <span style={{ margin: '0 8px' }}>|</span>
-          <a href="">Register now!</a>
+          <a href="register">SignUp</a>
         </Form.Item>
       </Form>
     </Card>

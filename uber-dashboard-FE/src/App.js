@@ -11,16 +11,27 @@ import CreateItem from './modules/CreateItem';
 import OrderHistory from './modules/OrderHistory';
 import AppRoutes from './components/AppRoutes';
 import SignUp from './modules/signup';
+import SignIn from './modules/signin';
+import ForgotPass from './modules/forgot/forgot';
+
 const { Sider, Content, Footer } = Layout;
+
 
 function App() {
   return (
-    <>
-    <SignUp/>
-    {
 
-false &&    
- <Layout>
+    <Routes>
+      <Route path='/' element={<SignIn />} />
+      <Route path='/register' element={<SignUp />} />
+      <Route path="/app/*" element={<AppLayout />} />
+      <Route path='/forgot' element={<ForgotPass />} />
+    </Routes>
+
+  );
+}
+function AppLayout() {
+  return (
+    <Layout>
       <Sider style={{ height: "100vh", backgroundColor: 'white', }}>
         <Image src="https://logos-world.net/wp-content/uploads/2020/11/Uber-Eats-Symbol.jpg" preview={false} />
         <SideMenu />
@@ -34,10 +45,9 @@ false &&
         </Footer>
       </Layout>
     </Layout>
-}
-    </>
-
   );
 }
 
 export default App;
+
+
