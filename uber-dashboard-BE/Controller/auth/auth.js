@@ -42,7 +42,6 @@ export const login = async (req, res, next) => {
       {expiresIn: '5s'}
     );
     const { password, isAdmin, ...otherdetails } = user._doc;
-
     res.cookie("access_token",token,{
       httpOnly:true,
     }).status(200).json({...otherdetails,token});

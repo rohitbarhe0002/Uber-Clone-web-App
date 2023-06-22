@@ -34,22 +34,36 @@ export const createOrder = async (req, res, next) => {
 //   }
 // };
 
-///get All hotels
+///get All  orders
 export const getAllOrders = async (req, res, next) => {
   try {
     const allOrders = await Orders.find();
-    res.status(200).json(allOrders);
+    if(allOrders.length > 0) {
+      res.status(200).json(allOrders);
+    }else{
+      res.status(200).json({errorMessage:'No orders found'});
+    }
   } catch (err) {
     console.log(err);
   }
 };
 
-// ////single user
-// export const getUserById = async (req, res, next) => {
-//   try {
-//     const user = await User.findById(req.params.id);
-//     res.status(200).json(user);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+// get single order
+export const getOrdersById = async (req, res, next) => {
+  try {
+    const order = await Orders.findOne({orderID: req.params.id});
+    res.status(200).json(order);
+  } catch (err) {
+    next(err);
+  }
+};
+
+//delete order 
+export const deleteOrder = async (req, res, next) => {
+  try {
+    await Orders.findOneAndDelete({orderID:req.params.id});
+    res.status(200).json("order has been deleted");
+  } catch (err) {
+    next(err);
+  }
+};

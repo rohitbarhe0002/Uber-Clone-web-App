@@ -40,18 +40,32 @@ export const createMenuItem = async (req, res, next) => {
 export const getAllRestaurentMenu = async (req, res, next) => {
   try {
     const allMenus = await RestaurentMenu.find();
-    res.status(200).json(allMenus);
+    if(allMenus.length > 0) {
+      res.status(200).json(allMenus);
+    }else{
+      res.status(200).json({errorMessage:'No menus found'});
+    }
   } catch (err) {
     console.log(err);
   }
 };
 
-// ////single user
-// export const getUserById = async (req, res, next) => {
-//   try {
-//     const user = await User.findById(req.params.id);
-//     res.status(200).json(user);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+// ////single menu
+export const getRestaurentMenuById = async (req, res, next) => {
+  try {
+    const restaurentsMenu = await RestaurentMenu.findOne({id:req.params.id});
+    res.status(200).json(restaurentsMenu);
+  } catch (err) {
+    next(err);
+  }
+};
+
+//delete menu
+export const deleteRestaurentMenu = async (req, res, next) => {
+  try {
+    await RestaurentMenu.findOneAndDelete({id:req.params.id});
+    res.status(200).json("menu has been deleted");
+  } catch (err) {
+    next(err);
+  }
+};
