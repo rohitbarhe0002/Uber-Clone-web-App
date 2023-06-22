@@ -1,4 +1,4 @@
-import User from "../../Schema/user/index.js";
+import User from "../../Schema/user/user.js";
 
 ///Add new hotel
 export const createUser = async (req, res, next) => {
