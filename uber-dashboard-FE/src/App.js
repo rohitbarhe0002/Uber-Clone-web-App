@@ -16,10 +16,7 @@ const { Sider, Content, Footer } = Layout;
 function App() {
   return (
     <>
-    <SignUp/>
-    {
-
-false &&    
+ 
  <Layout>
       <Sider style={{ height: "100vh", backgroundColor: 'white', }}>
         <Image src="https://logos-world.net/wp-content/uploads/2020/11/Uber-Eats-Symbol.jpg" preview={false} />
@@ -34,7 +31,6 @@ false &&
         </Footer>
       </Layout>
     </Layout>
-}
     </>
 
   );

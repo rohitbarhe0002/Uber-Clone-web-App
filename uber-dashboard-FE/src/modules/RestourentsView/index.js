@@ -1,34 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import dishes from  '../../assets/data/dashboard/dishes.json';
-import { Card,Descriptions,Divider,List,Button, Table,Tag } from 'antd';
+import { Card,Divider,List,Button, Table,Tag } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import CreateItem from '../CreateItem';
 import ModalView from '../../shared/Modal';
 import ModalContent from '../../shared/MdalContent';
+import { RestaurentsApi } from '../../apis/RestaurentsApis/restaurentsApi';
 
 const renderStatus = (status) => {
-    if(status=="Accepted"){
+    if(status==="Accepted"){
         return <Tag  color='green'>{status}</Tag>
     }
-    if(status=="Pending"){
+    if(status==="Pending"){
         return <Tag  color='orange'>{status}</Tag>
     }
-    if(status=="Declined"){
+    if(status==="Declined"){
         return <Tag  color='red'>{status}</Tag>
     }
 }
 
 function RestaurentsMenu () {
-    const [restaurRentsMenu,setRestaurRetantsMenu]   =  useState(dishes)
+
+    const [restaurRentsMenu,setRestaurRetantsMenu]   =  useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [foodID, setFoodID] = useState();
 
 
-   const  removeItems = (items) =>{
-      const filteredRestrauMenu = restaurRentsMenu.filter(obj => obj.id !== items);
-       setRestaurRetantsMenu(filteredRestrauMenu);
-   }
+    useEffect(() => {
+        RestaurentsApi.getAllRestaurentMenu().then((restaurentsMenus) => {
+        setRestaurRetantsMenu(restaurentsMenus)
+        })
+      }, [])
 
+   const  removeItems = (menuID) =>{
+    RestaurentsApi.deleteResataurentMenu(menuID).then((msg)=>{
+    console.log(msg);
+    })
+
+    //   const filteredRestrauMenu = restaurRentsMenu.filter(obj => obj.id !== menuID);
+    //    setRestaurRetantsMenu(filteredRestrauMenu);
+   }
 const handleItemEdit= (itemId) =>{
     console.log(itemId,"item id");
     setFoodID(itemId)

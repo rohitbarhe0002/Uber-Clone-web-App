@@ -39,9 +39,9 @@ export const createMenuItem = async (req, res, next) => {
 // ///get All menu
 export const getAllRestaurentMenu = async (req, res, next) => {
   try {
-    const allMenus = await RestaurentMenu.find();
+    const allMenus = await RestaurentMenu.find({}, { _id: 0 }).lean();
     if(allMenus.length > 0) {
-      res.status(200).json(allMenus);
+      res.status(200).json({ restaurentsMenus : allMenus } );
     }else{
       res.status(200).json({errorMessage:'No menus found'});
     }

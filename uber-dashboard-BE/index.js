@@ -9,7 +9,7 @@ import restaurentRoute from './routes/restaurentsMenu/restaurentsMenu.js'
 import ordersRoute from './routes/orders/orders.js'
 
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
 
 dotenv.config();
 console.log(process.env.MONGODB_URL, "----")
@@ -41,19 +41,21 @@ app.use("/api/restaurent",restaurentRoute)
 app.use("/api/orders",ordersRoute)
 
 
-
-
-
 app.use((req,res,next,err)=>{
     const errorStatus = err.status || 500;
     const errorMessage = err.message   || "something went wrong"
+    if(errorStatus||errorMessage) {
     return res.status(errorStatus).json({
         success:false,
         status:errorStatus,
         message:errorMessage,
         stack:err.stack,
     })
+}
+else{
+    next();
+}
 })
-app.listen(PORT,()=>{
+app.listen(8000,()=>{
     console.log("succesfully connected to backend ");
 })

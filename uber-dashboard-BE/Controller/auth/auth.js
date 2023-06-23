@@ -7,14 +7,19 @@ dotenv.config()
 
 /// register user
 export const register = async (req, res, next) => {
-  console.log("comein register ");
+  const { username,email,address,password,userType,city,phoneNumber } = req.body;
+  console.log(password)
   try {
     const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(req.body.password, salt);
+    const hash = bcrypt.hashSync(password, salt);
     const newUser = new User({
-      username: req.body.username,
-      email: req.body.email,
+      username: username,
+      email: email,
       password: hash,
+      address: address,
+      city:city,
+      userType: userType,
+      phoneNumber:phoneNumber
     });
     await newUser.save();
     res.status(200).send("user has been created");
@@ -25,9 +30,10 @@ export const register = async (req, res, next) => {
 
 /// login user
 export const login = async (req, res, next) => {
-  console.log
+
   try {
     const user = await User.findOne({ username: req.body.username });
+    // RestaurentMenu.find({}, { _id: 0 }).lean()
     // if (!user) return next(createError(404, "user not found !"));
     const isPasswordChecked = await bcrypt.compare(
       req.body.password,
