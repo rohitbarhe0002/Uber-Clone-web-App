@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+install packages in both dir `npm install`
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -9,7 +11,6 @@ In the project directory, you can run:
 ### `npm start`
 ## go to BE and run
 
-after installing packages go to in both dir and run `npm install`
 ### `npm start` if there error for port change port 
 BE is running on http://localhost:8000](http://localhost:3000
 
