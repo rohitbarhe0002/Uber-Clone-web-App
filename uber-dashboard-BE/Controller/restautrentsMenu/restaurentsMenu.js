@@ -3,7 +3,7 @@ import RestaurentMenu from "../../Schema/RestaurentsMenu/restaurentMenu.js";
 
 ///Add new menu item
 export const createMenuItem = async (req, res, next) => {
-    console.log(req,"reuested")
+  console.log(req.body)
   const newMenuItem = new RestaurentMenu(req.body);
   try {
     const saveMEnuItem = await newMenuItem.save();
@@ -13,18 +13,26 @@ export const createMenuItem = async (req, res, next) => {
   }
 };
 
-// ///update hotel
-// export const updateUser = async (req, res, next) => {
-//   try {
-//     const updatedUser = await User.findByIdAndUpdate(
-//       req.params.id,
-//       { $set: req.body },
-//     );
-//     res.status(200).json(updatedUser);
-//   } catch (err) {
-//    console.log(err);
-//   }
-// };
+// ///update restaturent
+
+export const updateRestaurant = async (req, res, next) => {
+  console.log(req.params.id);
+  const filter = { id: req.params.id };
+  const update = req.body;
+  
+  try {
+    const updatedRestaurant = await RestaurentMenu.findOneAndUpdate(filter,update, {
+      returnOriginal: false,
+      projection: { _id: 0 },
+   });
+   console.log(updatedRestaurant,"updatedRestaurant")
+    res.status(200).json(updatedRestaurant);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
 
 // ///delete hotel
 // export const deleteUser = async (req, res, next) => {
@@ -52,8 +60,9 @@ export const getAllRestaurentMenu = async (req, res, next) => {
 
 // ////single menu
 export const getRestaurentMenuById = async (req, res, next) => {
+  const filter = { id: req.params.id };
   try {
-    const restaurentsMenu = await RestaurentMenu.findOne({id:req.params.id});
+    const restaurentsMenu = await RestaurentMenu.findOne(filter);
     res.status(200).json(restaurentsMenu);
   } catch (err) {
     next(err);

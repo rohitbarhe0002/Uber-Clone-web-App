@@ -34,14 +34,12 @@ function RestaurentsMenu () {
 
    const  removeItems = (menuID) =>{
     RestaurentsApi.deleteResataurentMenu(menuID).then((msg)=>{
-    console.log(msg);
     })
 
     //   const filteredRestrauMenu = restaurRentsMenu.filter(obj => obj.id !== menuID);
     //    setRestaurRetantsMenu(filteredRestrauMenu);
    }
 const handleItemEdit= (itemId) =>{
-    console.log(itemId,"item id");
     setFoodID(itemId)
     setIsModalOpen(!isModalOpen)
 }

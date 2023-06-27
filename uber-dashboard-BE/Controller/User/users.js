@@ -5,28 +5,16 @@ export const createUser = async (req, res, next) => {
   console.log(req.body,"body is here")
   const newUser = new User(req.body);
   try {
-    const saveUser = await newUser.save();
+    const  saveUser = await newUser.save();
     res.status(200).json(saveUser);
   } catch (err) {
     next(err);
   }
 };
 
-///update hotel
-export const updateUser = async (req, res, next) => {
-  try {
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-    );
-    res.status(200).json(updatedUser);
-  } catch (err) {
-   console.log(err);
-  }
-};
 
 ///delete hotel
-export const deleteUser = async (req, res, next) => {
+export const deleteUser  = async (req, res, next) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.status(200).json("user has been deleted");
@@ -45,10 +33,31 @@ export const getAllUser = async (req, res, next) => {
   }
 };
 
-////single user
-export const getUserById = async (req, res, next) => {
+
+
+// update user
+export const updateUser = async (req, res, next) => {
+  const filter = { id: req.params.id };
+  const update = req.body;
   try {
-    const user = await User.findById(req.params.id);
+    const updatedUser = await User.findOneAndUpdate(filter,update, {
+      returnOriginal: false,
+      projection: { _id: 0},
+   });
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
+};
+
+  
+
+//single user
+export const getUserById = async (req, res, next) => {
+    const {id}   = req.params ;
+  try {
+    const user = await User.findById(id);
     res.status(200).json(user);
   } catch (err) {
     next(err);

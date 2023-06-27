@@ -6,9 +6,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 /// register user
-export const register = async (req, res, next) => {
+export const signUp = async (req, res, next) => {
   const { username,email,address,password,userType,city,phoneNumber } = req.body;
-  console.log(password)
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
@@ -22,15 +21,14 @@ export const register = async (req, res, next) => {
       phoneNumber:phoneNumber
     });
     await newUser.save();
-    res.status(200).send("user has been created");
+    res.status(200).send(  "user has been created");
   } catch (err) {
     next(err);
   }
 };
 
 /// login user
-export const login = async (req, res, next) => {
-
+export const  signIn = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
     // RestaurentMenu.find({}, { _id: 0 }).lean()
@@ -40,9 +38,9 @@ export const login = async (req, res, next) => {
       user.password
     );
     if (!isPasswordChecked)
-      return next(
-        // createError(400, "bad request username or password not matched !")
-      );
+   {
+     res.status(404).json({errorMessage:"password is not matched"});
+   }
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },process.env.JWT,
       {expiresIn: '5s'}

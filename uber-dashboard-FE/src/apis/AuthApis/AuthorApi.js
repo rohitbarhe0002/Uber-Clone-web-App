@@ -1,15 +1,16 @@
 import { api } from "../configs/axiosConfigs";
 
-export const ProductAPI = {
+export const AuthApi  = {
 
-    create: async function (userData, cancel = false) {
+       SignUp : async function (userData, cancel = false) {
+        console.log(userData,"users data from API controller")
         const abortController = new AbortController();
         const signal = cancel ? abortController.signal : undefined;
       
         try {
       const response =  await api.request({
-            url: `/auth/register`,
-            method: "GET",
+            url: `/auth/signup`,
+            method: "POST",
             data:userData,
             signal,
           });
@@ -22,6 +23,26 @@ export const ProductAPI = {
         }
       },
       
+
+      SignIn : async function (userData, cancel = false) {
+        const abortController = new AbortController();
+        const signal = cancel ? abortController.signal : undefined;
+      
+        try {
+      const response =  await api.request({
+            url: `/auth/signin`,
+            method: "POST",
+            data:userData,
+            signal,
+          });
+         return response.data;
+        } catch (error) {
+          if (cancel && error.name !== 'AbortError') {
+            abortController.abort();
+          }
+          throw error;
+        }
+      },
 
       // getAllRestaurentMenu : async function (cancel = false) {
       //   const abortController = new AbortController();

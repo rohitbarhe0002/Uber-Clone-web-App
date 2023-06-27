@@ -2,9 +2,9 @@ import express from "express";
 import {
   createUser,
   updateUser,
-  deleteUser,
-  getUserById,
-  getAllUser,
+getAllUser,
+getUserById,
+
 } from "../../Controller/User/users.js";
 
 
@@ -13,7 +13,13 @@ const router =  express.Router();
 
 
 /////post
-router.post("/", createUser);
+router.post("/",  createUser);
+
+router.get("/",getAllUser)
+router.get("/:id",getUserById)
+router.put("/:id",updateUser)
+router.post("/user",createUser)
+
 
 // ////update
 // router.put("/:id", verifyUser,updateUser);
