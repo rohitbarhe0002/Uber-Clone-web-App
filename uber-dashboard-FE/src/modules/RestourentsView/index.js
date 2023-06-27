@@ -6,6 +6,8 @@ import CreateItem from '../CreateItem';
 import ModalView from '../../shared/Modal';
 import ModalContent from '../../shared/MdalContent';
 import { RestaurentsApi } from '../../apis/RestaurentsApis/restaurentsApi';
+import {Modal} from 'antd';
+import ErrorModal from '../../shared/ErrorModal';
 
 const renderStatus = (status) => {
     if(status==="Accepted"){
@@ -24,6 +26,9 @@ function RestaurentsMenu () {
     const [restaurRentsMenu,setRestaurRetantsMenu]   =  useState([])
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [foodID, setFoodID] = useState();
+    const [errorMessage,setErrorMessage] = useState('')
+    const [isErrorModalOpen,setIsErrorModalOpen] = useState(false);
+
 
 
     useEffect(() => {
@@ -32,13 +37,21 @@ function RestaurentsMenu () {
         })
       }, [])
 
-   const  removeItems = (menuID) =>{
-    RestaurentsApi.deleteResataurentMenu(menuID).then((msg)=>{
-    })
-
-    //   const filteredRestrauMenu = restaurRentsMenu.filter(obj => obj.id !== menuID);
-    //    setRestaurRetantsMenu(filteredRestrauMenu);
-   }
+      const removeItems = (menuID) => {
+        RestaurentsApi.deleteResataurentMenu(menuID)
+          .then((msg) => {
+          //add react toast
+          })
+          .catch((err) => {
+            console.log(err.message,">>>>>>error");
+            setIsErrorModalOpen(true)
+           setErrorMessage(err?.message)
+          });
+      
+        // const filteredRestrauMenu = restaurRentsMenu.filter(obj => obj.id !== menuID);
+        // setRestaurRetantsMenu(filteredRestrauMenu);
+      };
+      
 const handleItemEdit= (itemId) =>{
     setFoodID(itemId)
     setIsModalOpen(!isModalOpen)
@@ -83,6 +96,7 @@ const renderMenuItemButton = () => <Button type='primary' onClick={()=>setIsModa
 <ModalView  isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} >
 <ModalContent setRestaurRetantsMenu={setRestaurRetantsMenu} restaurRentsMenu={restaurRentsMenu} itemId={foodID} setItemId={setFoodID} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  />
 </ModalView>
+<ErrorModal errorMesage={errorMessage} isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen}/>
 </>
   )
 }

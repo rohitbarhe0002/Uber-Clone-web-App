@@ -1,26 +1,27 @@
-import { useState } from "react";
 import {Modal} from "antd";
-
-export   const showModal = message => {
-   console.log(message)
-  };
-
-const MyComponent = () => {
-    const [modalVisible, setModalVisible] = useState(false);
-    const [modalMessage, setModalMessage] = useState("");
-  
- 
-  
+const ErrorModal = ({errorMesage,isOpen,setIsOpen}) => {
     return (
       <>
-        {/* Your component JSX */}
-        {modalVisible && (
-          <Modal onClose={() => setModalVisible(false)}>
-            {modalMessage}
+          <Modal style={{width:'200px'}} onClose={()=>setIsOpen(!isOpen)} onCancel={()=>setIsOpen(!isOpen)} footer={null} open={isOpen}>
+           <p style={styles.showErrorMessage} >{errorMesage}</p>
           </Modal>
-        )}
+        )
       </>
     );
   };
   
-  export default MyComponent;
+    const styles = {
+     showErrorMessage: {
+       display:'flex',
+       justifyContent: 'center',
+       alignItems: 'center',
+        color:'red',
+        height:118,
+        fontSize:20,
+        fontWeight:'500'
+    }
+  
+  }
+  export default ErrorModal;
+
+

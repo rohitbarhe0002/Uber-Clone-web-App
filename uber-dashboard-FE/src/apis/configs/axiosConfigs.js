@@ -1,6 +1,5 @@
 
 import axios from "axios";
-import { showModal } from "../../shared/ErrorModal";
 export const api = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
@@ -8,12 +7,12 @@ export const api = axios.create({
   }
 });
 
-const errorHandler = (error, showModal) => {
+const errorHandler = (error) => {
   const statusCode = error.response?.status;
-
   if (statusCode ) {
     const errorMessage = error.response?.data?.message || "An error occurred";
-    showModal(errorMessage);
+    console.log(errorMessage)
+  
   }
 
   return Promise.reject(error);
@@ -21,7 +20,7 @@ const errorHandler = (error, showModal) => {
 
 api.interceptors.response.use(
   undefined,
-  error => errorHandler(error, showModal)
+  error => errorHandler(error)
 );
 
 

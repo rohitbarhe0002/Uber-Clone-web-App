@@ -1,5 +1,4 @@
 import { api } from "../configs/axiosConfigs";
-
 export const RestaurentsApi = {
 
     // create: async function (product, cancel = false) {
@@ -62,6 +61,7 @@ export const RestaurentsApi = {
         }
       },
 
+
       deleteResataurentMenu : async function (menuId,cancel = false) {
         const abortController = new AbortController();
         const signal = cancel ? abortController.signal : undefined;
@@ -79,6 +79,7 @@ export const RestaurentsApi = {
           throw error;
         }
       },
+      
 
 //   get: async function (id, cancel = false) {
 //     const abortController = new AbortController();
