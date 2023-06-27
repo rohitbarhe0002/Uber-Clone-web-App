@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
-## go to in FE and start 
+## go to in FE and run 
 ### `npm start`
 ## go to BE and run
 
@@ -23,6 +23,12 @@ You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+ create env file in both dir and put this 
+FE env = REACT_APP_BASE_URL=http://localhost:8000/api
+BE env = JWT  = xxxRohit;
+PORT = 3001;
+MONGODB_URL= mongodb://localhost:27017/uber-dashboard-api;
 
 ### `npm run build`
 
