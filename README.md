@@ -2,11 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+install packages in both dir `npm install`
+
 ## Available Scripts
 
 In the project directory, you can run:
-
+## go to in FE and run 
 ### `npm start`
+## go to BE and run
+
+### `npm start` if there error for port change port 
+BE is running on http://localhost:8000](http://localhost:3000
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -18,6 +24,12 @@ You may also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+ create env file in both dir and put this 
+FE env = REACT_APP_BASE_URL=http://localhost:8000/api
+BE env = JWT  = xxxRohit;
+PORT = 3001;
+MONGODB_URL= mongodb://localhost:27017/uber-dashboard-api;
 
 ### `npm run build`
 
