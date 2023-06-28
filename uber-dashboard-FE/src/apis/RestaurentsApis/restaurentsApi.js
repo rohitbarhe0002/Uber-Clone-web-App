@@ -48,7 +48,7 @@ export const RestaurentsApi = {
       
         try {
          const response =  await api.request({
-            url: `/restaurent`,
+            url: `/restaurent `,
             method: "GET",
             signal,
           });

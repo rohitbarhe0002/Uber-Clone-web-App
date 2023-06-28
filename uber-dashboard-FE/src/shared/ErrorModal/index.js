@@ -5,7 +5,7 @@ const ErrorModal = ({errorMesage,isOpen,setIsOpen}) => {
           <Modal style={{width:'200px'}} onClose={()=>setIsOpen(!isOpen)} onCancel={()=>setIsOpen(!isOpen)} footer={null} open={isOpen}>
            <p style={styles.showErrorMessage} >{errorMesage}</p>
           </Modal>
-        )
+        
       </>
     );
   };

@@ -7,6 +7,8 @@ import ModalView from '../../shared/Modal';
 import ModalContent from '../../shared/MdalContent';
 import { RestaurentsApi } from '../../apis/RestaurentsApis/restaurentsApi';
 import {Modal} from 'antd';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ErrorModal from '../../shared/ErrorModal';
 
 const renderStatus = (status) => {
@@ -29,21 +31,24 @@ function RestaurentsMenu () {
     const [errorMessage,setErrorMessage] = useState('')
     const [isErrorModalOpen,setIsErrorModalOpen] = useState(false);
 
-
-
     useEffect(() => {
         RestaurentsApi.getAllRestaurentMenu().then((restaurentsMenus) => {
         setRestaurRetantsMenu(restaurentsMenus)
         })
       }, [])
 
+      const showToastMessage = () => {
+        toast.success('Success Notification !', {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
       const removeItems = (menuID) => {
         RestaurentsApi.deleteResataurentMenu(menuID)
           .then((msg) => {
           //add react toast
+          showToastMessage();
           })
           .catch((err) => {
-            console.log(err.message,">>>>>>error");
             setIsErrorModalOpen(true)
            setErrorMessage(err?.message)
           });
@@ -93,10 +98,11 @@ const renderMenuItemButton = () => <Button type='primary' onClick={()=>setIsModa
     <Table dataSource={restaurRentsMenu} columns={tableColumns}  rowKey={(record) => record.id}  />
   </Card>
 {/* <CreateItem isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} setRestaurRetantsMenu={setRestaurRetantsMenu} restaurRentsMenu={restaurRentsMenu} itemId={foodID}/> */}
-<ModalView  isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} >
+{/* <ModalView  isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} >
 <ModalContent setRestaurRetantsMenu={setRestaurRetantsMenu} restaurRentsMenu={restaurRentsMenu} itemId={foodID} setItemId={setFoodID} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  />
-</ModalView>
+</ModalView> */}
 <ErrorModal errorMesage={errorMessage} isOpen={isErrorModalOpen} setIsOpen={setIsErrorModalOpen}/>
+{/* <ToastContainer /> */}
 </>
   )
 }
